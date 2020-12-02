@@ -1,7 +1,9 @@
 package com.zyx.payimooc.dao;
 
 import com.zyx.payimooc.pojo.User;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 

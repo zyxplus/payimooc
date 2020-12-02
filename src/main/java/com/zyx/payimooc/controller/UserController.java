@@ -2,9 +2,11 @@ package com.zyx.payimooc.controller;
 
 import com.zyx.payimooc.enums.ResponseEnum;
 import com.zyx.payimooc.form.UserForm;
+import com.zyx.payimooc.pojo.User;
 import com.zyx.payimooc.service.IUserService;
 import com.zyx.payimooc.vo.ResponseVo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +23,8 @@ public class UserController {
     private IUserService userService;
 
     @PostMapping("register")
-    public ResponseVo register(@Valid @RequestBody UserForm userForm,
-                               BindingResult bindingResult) {
+    public Object register(@Valid @RequestBody UserForm userForm,
+                           BindingResult bindingResult) {
 
         //获取注解上的信息
         if (bindingResult.hasErrors()) {
@@ -32,9 +34,10 @@ public class UserController {
             return ResponseVo.error(ResponseEnum.PARAM_ERROR, bindingResult);
         }
 
-        log.info("username{}", userForm.getUsername());
-//        return ResponseVo.success("注册成功");
-        return ResponseVo.error(ResponseEnum.NEED_LOGIN);
+        User user = new User();
+        BeanUtils.copyProperties(userForm, user);
+        return userService.register(user);
+
     }
 
 
