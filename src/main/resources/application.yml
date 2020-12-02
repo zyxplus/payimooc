@@ -1,0 +1,19 @@
+server:
+  port: 8083
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: nimeialk777PL
+    url: jdbc:mysql://localhost:3306/mall1?useUnicode=true&characterEncoding=utf-8&useSSL=false
+mybatis:
+  mapper-locations: classpath:mappers/*xml
+  configuration:
+    map-underscore-to-camel-case: true
+#    控制台日志配置
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  pattern:
+    console: "[%thread] - %-5level - %logger{36} - %msg%n"
+
