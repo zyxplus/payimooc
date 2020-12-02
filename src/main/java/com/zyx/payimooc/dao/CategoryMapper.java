@@ -1,6 +1,9 @@
 package com.zyx.payimooc.dao;
 
 import com.zyx.payimooc.pojo.Category;
+import com.zyx.payimooc.vo.ResponseVo;
+
+import java.util.List;
 
 public interface CategoryMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,6 @@ public interface CategoryMapper {
     int updateByPrimaryKeySelective(Category record);
 
     int updateByPrimaryKey(Category record);
+
+    List<Category> selectAll();
 }
