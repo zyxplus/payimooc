@@ -14,6 +14,7 @@ public class IntercepterConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new UserLoginIntercepter())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/user/login", "/user/register", "/categories");
+                .excludePathPatterns("/user/login", "/user/register",
+                        "/categories", "/products", "/products/*");
     }
 }

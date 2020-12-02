@@ -8,7 +8,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -22,5 +24,11 @@ public class ICategoryServiceTest extends PayimoocApplicationTests {
         ResponseVo<List<CategoryVo>> responseVo = categoryService.selectAll();
         Assert.assertEquals(ResponseEnum.SUCCESS.getCode(), responseVo.getStatus());
 
+    }
+
+    @Test
+    public void findSubCategoryById() {
+        Set<Integer> set = new HashSet<>();
+        categoryService.findSubCategoryById(100001, set);
     }
 }

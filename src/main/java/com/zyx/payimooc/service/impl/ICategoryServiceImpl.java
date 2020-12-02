@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.zyx.payimooc.consts.MallConst.ROOT_PARENT_ID;
@@ -45,6 +46,7 @@ public class ICategoryServiceImpl implements ICategoryService {
 
     }
 
+
     /**
      * 查询子目录
      * @param categoryVoList 父级目录
@@ -68,10 +70,29 @@ public class ICategoryServiceImpl implements ICategoryService {
 
     }
 
-    private CategoryVo Category2CategoryVo(Category category) {
+
+    @Override
+    public void findSubCategoryById(Integer id, Set<Integer> resultSet) {
+        List<Category> categories = categoryMapper.selectAll();
+        findSubCategory(id, resultSet, categories);
+    }
+
+    public void findSubCategory(Integer id, Set<Integer> resultSet, List<Category> categories) {
+        for (Category category : categories) {
+            if (category.getParentId().equals(id)){
+                resultSet.add(category.getId());
+                findSubCategory(category.getId(), resultSet, categories);
+            }
+        }
+    }
+
+
+
+        private CategoryVo Category2CategoryVo(Category category) {
         CategoryVo categoryVo = new CategoryVo();
         BeanUtils.copyProperties(category, categoryVo);
         return categoryVo;
     }
+
 
 }
