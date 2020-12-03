@@ -65,7 +65,7 @@ public class IProductServiceImpl implements IProductService {
 
         if (product.getStatus().equals(OFF_SALE.getCode())
                 || product.getStatus().equals(DELETE.getCode())) {
-            return ResponseVo.error(ResponseEnum.PRODUCT_OFF_SAALE_OR_DELETE);
+            return ResponseVo.error(ResponseEnum.PRODUCT_OFF_SALE_OR_DELETE);
         }
 
         ProductDetailVo productDetailVo = new ProductDetailVo();
