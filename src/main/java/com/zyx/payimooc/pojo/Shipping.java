@@ -1,7 +1,10 @@
 package com.zyx.payimooc.pojo;
 
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
 public class Shipping {
     private Integer id;
 
